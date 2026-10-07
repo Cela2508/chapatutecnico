@@ -1,0 +1,203 @@
+/* ==========================================================
+   Chapa Tu Técnico — Hoja de estilos única (todas las páginas)
+   ========================================================== */
+:root {
+  --bg: #08233b;
+  --bg-dark: #061b2e;
+  --white: #fff;
+  --muted: #c9d4de;
+  --orange: #e8532b;
+  --red: #e5482e;
+  --green: #5fd068;
+  --line: rgba(255, 255, 255, .22);
+  --font-title: 'Oswald', sans-serif;
+  --font-body: 'Raleway', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: var(--font-body); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+.container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.section-title { font-family: var(--font-title); font-weight: 600; font-size: 1.6rem; margin-bottom: 20px; }
+
+/* ---------- Topbar + Header (compartidos) ---------- */
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 6px 24px; font-size: 12px; background: #000; }
+.topbar-text { flex: 1; text-align: center; padding-left: 150px; }
+.topbar-location { display: flex; align-items: center; gap: 8px; }
+.flag { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; }
+
+.header { position: relative; z-index: 10; padding: 8px 0 12px; background: var(--bg-dark); border-bottom: 1px solid var(--line); }
+.header-container { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 24px; }
+.logo { display: block; width: 100px; }
+.logo img { width: 100%; height: 72px; object-fit: contain; object-position: left center; }
+.header-main { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.nav-row { display: flex; align-items: center; gap: 22px; }
+.navbar { display: flex; gap: 22px; font-size: 13px; font-weight: 500; line-height: 1.15; letter-spacing: .02em; }
+.navbar a { transition: color .2s; }
+.navbar a:hover, .navbar a.active { color: var(--green); }
+.btn-emergency { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #e01212; font-weight: 800; font-size: 13px; padding: 7px 12px; border-radius: 6px; white-space: nowrap; transition: filter .2s; }
+.btn-emergency:hover { filter: brightness(1.08); }
+.btn-emergency img { width: 22px; height: 22px; object-fit: contain; }
+
+.search-bar { display: flex; align-items: center; gap: 8px; width: min(100%, 430px); background: var(--white); border-radius: 999px; padding: 6px 14px; }
+.search-bar input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 500 13px var(--font-body); color: #222; }
+.search-bar:focus-within { outline: 3px solid var(--green); }
+.search-bar button { background: none; border: 0; display: grid; place-items: center; }
+.search-bar button img { width: 16px; height: 16px; object-fit: contain; }
+
+.header-actions { display: flex; align-items: center; gap: 18px; }
+.account { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; }
+.account img { width: 32px; height: 32px; object-fit: contain; }
+.icon-link img { width: 22px; height: 22px; object-fit: contain; }
+.menu-toggle { display: none; background: none; border: 0; font-size: 26px; line-height: 1; }
+
+/* ---------- Portada (hero) ---------- */
+.hero-wrap { display: flex; flex-direction: column; min-height: clamp(620px, 62vw, 820px);
+  background: linear-gradient(to bottom, rgba(0,0,0,.85) 0, rgba(0,0,0,.35) 90px, rgba(0,0,0,0) 220px), url('img/banner_principal.png') center / cover no-repeat; }
+.hero-wrap .topbar, .hero-wrap .header { background: none; border: 0; }
+
+.hero-banner { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding-top: clamp(24px, 5vw, 70px); }
+.hero-content { position: relative; }
+.hero-content h1 { font-family: var(--font-title); font-weight: 500; font-size: clamp(2rem, 4.6vw, 4rem); line-height: 1.05; text-shadow: 0 2px 10px rgba(0,0,0,.45); }
+.hero-content .highlight { color: var(--orange); font-weight: 600; font-size: 1.6em; line-height: 1; }
+.hero-crosses { position: absolute; z-index: 1; font-family: var(--font-title); font-size: clamp(14px, 2vw, 26px); line-height: .85; letter-spacing: .12em; }
+.left-crosses { left: 14px; top: 28%; }
+.right-crosses { right: 5vw; bottom: 34%; }
+
+.hero-carousel { display: flex; gap: clamp(10px, 2.4vw, 24px); overflow-x: auto; padding-bottom: 28px; scrollbar-width: none; cursor: grab; touch-action: pan-x; }
+.hero-carousel::-webkit-scrollbar { display: none; }
+.hero-carousel.dragging { cursor: grabbing; user-select: none; }
+.hero-card { position: relative; flex: 0 0 clamp(170px, 21vw, 280px); aspect-ratio: 1.5; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.hero-card img { width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; transition: transform .4s; }
+.hero-card:hover img { transform: scale(1.05); }
+.hero-card-overlay { position: absolute; inset: 0 0 auto 0; padding: 10px 14px 28px; background: linear-gradient(to bottom, rgba(8,35,59,.75), rgba(8,35,59,0)); }
+.hero-card-overlay p { font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+.hero-card-overlay h3 { font-family: var(--font-title); font-weight: 600; font-size: clamp(1.05rem, 1.9vw, 1.7rem); line-height: 1; color: var(--orange); }
+
+/* ---------- Beneficios ---------- */
+.benefits { padding: 56px 0 64px; }
+.benefits-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center; }
+.benefit-item img { height: 46px; width: auto; margin: 0 auto 14px; }
+.benefit-item h4 { font-weight: 500; font-size: 1.1rem; letter-spacing: .03em; line-height: 1.35; margin-bottom: 10px; }
+.benefit-item p { max-width: 26ch; margin: 0 auto; font-size: .8rem; font-style: italic; color: var(--muted); }
+
+/* ---------- Ofertas ---------- */
+.offers { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: clamp(280px, 32vw, 400px); padding: 40px max(24px, 5vw);
+  background: linear-gradient(90deg, rgba(8,35,59,.55), rgba(8,35,59,0) 60%), url('img/banneroferta.png') center / cover no-repeat; }
+.offers-text { flex: 1; max-width: 520px; }
+.offers-text h3 { font-weight: 500; font-size: clamp(1.7rem, 3vw, 2.6rem); line-height: 1.2; margin-bottom: 18px; }
+.discount { display: flex; flex-direction: column; color: var(--red); margin-bottom: 20px; line-height: 1.05; }
+.discount .percent { font-weight: 500; font-size: clamp(2.4rem, 4.4vw, 3.8rem); }
+.discount .desc { font-weight: 700; font-size: clamp(1rem, 1.8vw, 1.5rem); }
+.btn-solicitar-oferta { display: inline-block; background: var(--white); color: var(--bg); font-weight: 800; padding: 7px 34px; border-radius: 999px; transition: background .2s; }
+.btn-solicitar-oferta:hover { background: var(--green); }
+.carousel-arrow { background: none; border: 0; font-size: 30px; opacity: .85; padding: 8px; transition: opacity .2s; }
+.carousel-arrow:hover { opacity: 1; }
+
+/* ---------- Servicios (rejilla de tarjetas) ---------- */
+.services { padding: 64px 0 24px; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 12px; }
+.services-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.service-card { position: relative; aspect-ratio: 1 / 1.02; border-radius: 6px; overflow: hidden; background: #0d2e4b; }
+.service-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.service-card:hover img { transform: scale(1.04); }
+.service-info { position: absolute; inset: auto 0 0 0; padding: 10px 12px 12px; text-align: center; background: rgba(8,35,59,.74); backdrop-filter: blur(2px); }
+.service-info h4 { font-weight: 600; font-size: .95rem; margin-bottom: 6px; }
+.btn-solicitar { display: inline-block; background: var(--white); color: var(--bg); font-weight: 800; font-size: .8rem; padding: 2px 24px; border-radius: 999px; }
+.btn-solicitar::after { content: ''; position: absolute; inset: 0; }
+.ver-mas-container { text-align: right; margin-top: 16px; }
+.ver-mas { font-style: italic; font-weight: 600; font-size: .85rem; text-decoration: underline; }
+.ver-mas:hover { color: var(--green); }
+
+/* ---------- Páginas internas ---------- */
+.page-head { display: flex; align-items: center; gap: 22px; padding-top: 28px; padding-bottom: 8px; }
+.page-title { font-size: 1.1rem; font-weight: 700; }
+.menu-icon { width: 30px; height: 22px; flex: none; background: linear-gradient(to bottom, #fff 0 3px, transparent 3px 9.5px, #fff 9.5px 12.5px, transparent 12.5px 19px, #fff 19px 22px); }
+.services-page { padding-top: 24px; }
+.back-row { margin-top: 28px; }
+.btn-regresar { display: inline-flex; align-items: center; gap: 10px; font-size: .85rem; }
+.btn-regresar svg { width: 22px; height: 22px; }
+.btn-regresar em { text-decoration: underline; font-weight: 500; }
+.btn-regresar:hover { color: var(--green); }
+
+.electricidad-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding-top: 16px; padding-bottom: 36px; }
+.electricidad-hero-text { padding-left: clamp(0px, 4vw, 50px); }
+.electricidad-hero-text h1 { font-weight: 600; font-size: clamp(1.9rem, 3.8vw, 2.8rem); letter-spacing: .18em; line-height: 1.5; margin-bottom: 18px; }
+.electricidad-hero-text p { font-size: clamp(1.05rem, 1.7vw, 1.25rem); font-weight: 300; max-width: 24ch; color: var(--muted); }
+.electricidad-hero-img { width: 100%; aspect-ratio: 1.5; object-fit: cover; border-radius: 10px; background: #1b3d5c; }
+
+.grid-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.detail-card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; padding: 6px 6px 14px; background: rgba(255,255,255,.02); }
+.detail-card img { width: 100%; aspect-ratio: 1.33; object-fit: cover; border-radius: 6px; background: #1b3d5c; }
+.detail-card h3 { margin: 16px 8px 6px; font-size: 1.3rem; font-weight: 700; line-height: 1.15; }
+.detail-card p { margin: 0 8px 18px; font-size: .8rem; color: var(--muted); flex: 1; }
+.btn-solicitar-detail { align-self: center; width: calc(100% - 20px); text-align: center; background: var(--white); color: var(--bg); font-weight: 800; padding: 5px 0; border-radius: 999px; transition: background .2s; }
+.btn-solicitar-detail:hover { background: var(--green); }
+
+/* ---------- Por qué elegirnos ---------- */
+.why-us { padding: 56px 0 72px; }
+.why-us-content { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: center; }
+.why-us-content img { width: 100%; border-radius: 10px; }
+.why-us-text { font-family: var(--font-title); font-weight: 300; font-size: clamp(1.05rem, 1.7vw, 1.4rem); line-height: 1.5; }
+.why-us-text p + p { margin-top: 1.3em; }
+.highlight-red { color: var(--red); font-weight: 400; }
+
+/* ---------- Footer ---------- */
+.footer { background: var(--bg-dark); border-top: 1px solid var(--line); padding: 22px 0 10px; font-size: 13px; }
+.footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px 40px; }
+.footer-col h4 { color: var(--red); font-size: .9rem; font-weight: 700; margin-bottom: 6px; }
+.footer-col ul { list-style: disc; padding-left: 18px; font-size: 12px; }
+.footer a:hover { color: var(--green); }
+.support-col p { margin-bottom: 6px; font-size: 12px; }
+.support-col a { display: inline-flex; align-items: center; gap: 6px; }
+.support-col img { width: 16px; height: 16px; object-fit: contain; }
+.payment-col { text-align: center; }
+.payment-col .small { font-size: 9px; margin-bottom: 8px; }
+.payment-icons { display: flex; gap: 6px; justify-content: center; }
+.payment-icons img { height: 24px; width: auto; border-radius: 4px; }
+.claim-col { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 14px; }
+.claim-col img { width: 56px; height: 56px; object-fit: contain; }
+.brand-col { text-align: center; font-size: 10px; }
+.brand-col img { width: auto; height: 46px; max-width: 120px; object-fit: contain; margin: 0 auto 4px; }
+.footer-socials { display: flex; justify-content: center; gap: 14px; margin-top: 8px; }
+.footer-socials img { width: 18px; height: 18px; object-fit: contain; }
+.footer-bottom { text-align: center; font-size: 11px; margin-top: 12px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+  .topbar-text { padding-left: 0; }
+  .header-container { grid-template-columns: 90px 1fr auto; gap: 16px; }
+  .logo { width: 80px; } .logo img { height: 60px; }
+  .navbar { display: none; }
+  .navbar.open { display: flex; flex-direction: column; gap: 14px; position: absolute; top: 100%; left: 0; right: 0; padding: 20px 24px; background: rgba(6,27,46,.97); border-top: 1px solid var(--line); }
+  .menu-toggle { display: block; }
+  .services-grid, .services-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-details { grid-template-columns: repeat(2, 1fr); }
+  .electricidad-hero, .why-us-content { grid-template-columns: 1fr; }
+  .footer-container { justify-content: flex-start; }
+}
+@media (max-width: 768px) {
+  .topbar { flex-direction: column; gap: 2px; text-align: center; }
+  .header-container { grid-template-columns: auto 1fr; gap: 10px 16px; }
+  .header-actions { justify-self: end; gap: 14px; }
+  .header-main { grid-column: 1 / -1; order: 3; }
+  .benefits-container { grid-template-columns: 1fr; }
+  .offers { padding-inline: 12px; }
+  .carousel-arrow { font-size: 22px; padding: 4px; }
+  .left-crosses, .right-crosses { display: none; }
+}
+@media (max-width: 520px) {
+  .services-grid, .services-grid.cols-4, .grid-details { grid-template-columns: 1fr; }
+  .nav-row { flex-wrap: wrap; justify-content: center; }
+  .footer-container { flex-direction: column; align-items: center; text-align: center; }
+  .footer-col ul { list-style: none; padding: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
